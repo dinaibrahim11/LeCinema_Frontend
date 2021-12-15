@@ -1,46 +1,8 @@
 {
 
   "users": [
-    {
-      "id": 1,
-      "firstname": "Esraa",
-      "lastname": "Hamed",
-      "age": "21",
-      "email": "esraahamedabdalla@hotmail.com",
-      "password": "esraa-password"
-    },
-    {
-      "id": 2,
-      "firstname": "Alaa",
-      "lastname": "Hamed",
-      "age": "22",
-      "email": "alaahamedabdalla@hotmail.com",
-      "password": "alaa-password"
-    },
-    {
-      "id": 3,
-      "firstname": "Dina",
-      "lastname": "Mohsen",
-      "age": "22",
-      "email": "dina.ibrahim.1@outlook.com",
-      "password": "dina-password"
-    },
-    {
-      "id": 4,
-      "firstname": "Abdelrahman",
-      "lastname": "Mamdouh",
-      "age": "22",
-      "email": "amamdouhmahfouz@gmail.com",
-      "password": "abdelrahman-password"
-    },
-    {
-      "id": 5,
-      "firstname": "Mostafa",
-      "lastname": "Hazem",
-      "age": "22",
-      "email": "mostafahmk@gmail.com",
-      "password": "mostafa-password"
-    },
+    
+    
     {
       "firstname": "laila",
       "lastname": "ahmed",
