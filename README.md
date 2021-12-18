@@ -9,7 +9,7 @@ This is the project for the course Software Engineering 2021, were we are making
 Open terminal/git-bash:
 
 ```sh
-$ git clone
+$ git clone https://github.com/dinaibrahim11/LeCinema-Frontend
 $ npm install
 $ npm start
 ```
