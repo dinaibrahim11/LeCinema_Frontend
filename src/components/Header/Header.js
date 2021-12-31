@@ -1,7 +1,6 @@
 /* This component will be responsible for rendering different headers */
 import React from 'react';
 import GuestHeader from '../../headers/GuestHeader/GuestHeader';
-import UserHeader from '../../headers/UserHeader/UserHeader';
 import OrganizeHeader from '../../headers/OrganizeHeader/OrganizeHeader'
 //import './Header.css';
 import { useSelector } from 'react-redux';
@@ -33,7 +32,7 @@ const Header = () => {
         <div style={{marginBottom: '0px'}}>
             {/* {alert(isLoggedIn.toString())} */}
     
-        {isLoggedIn ? <UserHeader /> : <GuestHeader />}
+        {isLoggedIn ? <GuestHeader /> : <GuestHeader />}
         </div>
     );
 

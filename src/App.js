@@ -12,7 +12,6 @@ import ResetPasswordSuccess from './components/ResetPasswordSuccess/ResetPasswor
 import ForgetPasswordSuccess from './components/ForgetPasswordSuccess/ForgetPasswordSuccess';
 import Signup from './components/Signup/Signup';
 import FormSuccess from './components/FormSuccess/FormSuccess';
-import Drawer from './components/Drawer/Drawer';
 
 const App = () => {
  
