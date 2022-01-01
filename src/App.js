@@ -4,10 +4,6 @@ import './App.css';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Login from './components/Login/Login';
-import ForgetPassword from './components/ForgetPassword/ForgetPassword'
-import ResetPassword from './components/ResetPassword/ResetPassword'
-import ResetPasswordSuccess from './components/ResetPasswordSuccess/ResetPasswordSuccess'
-import ForgetPasswordSuccess from './components/ForgetPasswordSuccess/ForgetPasswordSuccess';
 import Signup from './components/Signup/Signup';
 import FormSuccess from './components/FormSuccess/FormSuccess';
 

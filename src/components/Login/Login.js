@@ -286,9 +286,6 @@ if(redirect) {
                 <button className={classes.div_loginbutton} id="login-signin-btn" data-testid="button"> Login </button>
                 </div>       
 
-                <div className={classes.div__forgetpassword}>
-                <Link className={classes.a__forgetpassword} to ="/forgotpassword" id="forgot-psswrd-link"> Forgot password ? </Link> 
-                </div> 
                   
                  <p> Signup <Link to ="/signup" id="signup-here-link"> here </Link> </p>
                  <br />    

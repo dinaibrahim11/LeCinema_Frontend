@@ -10,10 +10,6 @@ import { useSelector } from 'react-redux';
 
 import Explore from '../../components/Explore/ExplorePage';
 import Login from '../../components/Login/Login';
-import ForgetPassword from '../../components/ForgetPassword/ForgetPassword'
-import ResetPassword from '../../components/ResetPassword/ResetPassword'
-import ResetPasswordSuccess from '../../components/ResetPasswordSuccess/ResetPasswordSuccess'
-import ForgetPasswordSuccess from '../../components/ForgetPasswordSuccess/ForgetPasswordSuccess';
 import Signup from '../../components/Signup/Signup';
 import FormSuccess from '../../components/FormSuccess/FormSuccess';
 
@@ -36,10 +32,6 @@ const Main = (props) => {
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/signup" component={Signup}/>
                 <Route exact path="/post-signup" component={FormSuccess} />
-                <Route exact path="/forgotpassword" component={ForgetPassword} />
-                <Route exact path="/post-forgotpassword" component={ForgetPasswordSuccess} />
-                <Route exact path="/forgotpassword-confirm" component={ResetPassword} />
-                <Route exact path="/post-forgotpassword-confirm" component={ResetPasswordSuccess} />
                 <ProtectedRoute exact path="/home" isLoggedIn={isLoggedIn} component={Posts}/>
                 <Route exact path="/photos" component={PostDetail} />
                 <Route exact path="/photos/:id" component={PostDetail} />
