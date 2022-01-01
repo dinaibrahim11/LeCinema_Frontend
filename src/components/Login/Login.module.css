@@ -26,7 +26,6 @@ div.login-page{
    
     height:100%;
     background-size: cover;
-    background-image: url(bg22.jpg);
     background-attachment:fixed;
     padding-top: 1px;
     padding-bottom: 30%;
@@ -93,7 +92,7 @@ div.usererror {
 }
 
 .form__login
-{
+{ 
     width: 500px;
     height:max-content;
     padding-top: 20px;
@@ -106,16 +105,14 @@ div.usererror {
     background-position:center;
     font-family: Georgia, 'Times New Roman', Times, serif;
    background-size: cover;
-   background-color:rgb(240, 208, 247);
+   background-color:rgb(252, 246, 245);
    min-block-size:  120%;
   
 }
 
 .div__login_page{
-   
     height:100%;
     background-size: cover;
-    background-image: url(bg22.jpg);
     background-attachment:fixed;
     padding-top: 1px;
     padding-bottom: 30%;

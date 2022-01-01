@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react' ;
 import {Link} from 'react-router-dom';
 import { Redirect } from "react-router-dom";
-import FacebookLogin from 'react-facebook-login';
 import classes from './Login.module.css';
 import { useDispatch } from 'react-redux';
 import { usersActions } from '../../storev2/users-slice';
@@ -9,7 +8,7 @@ import API from '../../fakeAPI';
 
 /**
  * Login existing user
- * @author Esraa Hamed
+ * @author 
  * @async
  * @example <Login />
  * @returns {element} The Login form contents
@@ -251,28 +250,6 @@ const componentClicked = () => {
   setRedirect("/home");
 }
 
-/**
- * Facebook login component to be returned with other form components
- */
-let fbContent;
-
-if(login) { 
-     fbContent = <FacebookLogin />}
-
-else {
-  fbContent = (
-    <FacebookLogin
-    appId="942791213199046"
-    autoLoad={false}
-    size="small"
-    fields="name,email,picture"
-    scope="public_profile,user_friends"
-    callback={responseFacebook}
-    onClick={componentClicked}
-    icon="fa-facebook" />
-  )
-}
-
 // ------------------------------------------ RETURN -------------------------------------------------- //
 
 if(redirect) {
@@ -286,7 +263,7 @@ if(redirect) {
         <div className={classes.div__login_page}>
        
            <form className={`${classes.login__page} ${classes.form__login}`} onSubmit={handleSubmit} data-testid="form">
-                <h5 className={classes.h5__center}> Login to flickr </h5>
+                <h5 className={classes.h5__center}> Login to leCinema </h5>
        
                 <div className={classes.div__input}>
                  <input type="email" placeholder="Email address" className={classes.div__inputfield}  id="login-email-field"
@@ -313,17 +290,7 @@ if(redirect) {
                 <Link className={classes.a__forgetpassword} to ="/forgotpassword" id="forgot-psswrd-link"> Forgot password ? </Link> 
                 </div> 
                   
-                 <hr className={classes.hr__or}/>
-                 <p  className={classes.p__or}> OR </p>
-                 <br />
-                  
-                 <div>
-                   {fbContent}
-                 </div>
-       
-                 <br />
-                 <hr />
-                 <p> Do not have an account? Signup <Link to ="/signup" id="signup-here-link"> here </Link> </p>
+                 <p> Signup <Link to ="/signup" id="signup-here-link"> here </Link> </p>
                  <br />    
                 
                  </form>

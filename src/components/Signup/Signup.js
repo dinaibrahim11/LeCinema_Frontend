@@ -1,16 +1,14 @@
 import React, { useState } from 'react'
 import classes from './Signup.module.css'
 import {Link} from 'react-router-dom'
-import FacebookLogin from 'react-facebook-login';
 import { Redirect } from "react-router-dom";
-import Recaptcha from 'react-recaptcha';
 import API from '../../fakeAPI';
 import { useDispatch } from 'react-redux';
 import { usersActions } from '../../storev2/users-slice';
 
 /**
  * Signup new user
- * @author Esraa Hamed
+ * @author 
  * @async
  * @example <Signup />
  * @returns {element} The sign up form contents
@@ -508,51 +506,6 @@ const responseFacebook = (response) => {
  * Since an already-registered user can click on login with facebook button
  * We want to avoid multiple records for a single person
  */
-const postFacebookDataHandler = () => {
-  API.get('users?email=' + facebookEmail)
-  .then(response => {
-    console.log(response.data);
-    if(response.data.length === 0) {
-          setIsRegistered(false);
-       }})
-       if(isRegistered === false) {
-        const facebookUserInfo = {
-          name: name,
-          email: facebookEmail }
-      API.post('users', facebookUserInfo)      //json server
-      .then(response => {
-       console.log(response)
-     })  
-}
-}
-
-/**
- * If user clicked on the Facebook login button he/she will be redirected to home page as well as
- * having their data recorded (if it wasn't already recorded)
- */
-const componentClicked = () =>{
-  postFacebookDataHandler();
-  setRedirect("/home");
-}
-
-if(login) { 
-  fbContent = <FacebookLogin />
-}
-else {
-  fbContent = (
-    <FacebookLogin
-    appId="942791213199046"
-    autoLoad={false}
-    returnScopes={true}
-    size="small"
-    fields="name,email,picture"
-    scope="public_profile,user_friends"
-    callback={responseFacebook}
-    onClick={componentClicked}
-    icon="fa-facebook" 
-    />
-  )
-}
 
 // ------------------------------------------ RETURN -------------------------------------------------- //
 
@@ -568,7 +521,7 @@ return (
  <div  className={classes.div__signup_page}>
 
     <form className={classes.form__signup_page} onSubmit={handleSubmit} data-testid="form">
-         <h5 className={classes.center}> Create your account</h5>
+         <h5 className={classes.center}> Signup to leCinema</h5>
 
          <div className={classes.div__input}>
          <input type="text" placeholder="First name" className={classes.div__inputfield} id="signup-first-name-field" data-testid="fname"
@@ -583,7 +536,7 @@ return (
          </div>
 
          <div className={classes.div__input}>
-          <input type="text" placeholder="Your age" className={classes.div__inputfield} id="signup-age-field" data-testid="age"
+          <input type="text" placeholder="Age" className={classes.div__inputfield} id="signup-age-field" data-testid="age"
                   onChange={handleAgeInput} value={age}/>
           <p className={classes.p__error}>{ageError}</p>
          </div>
@@ -600,15 +553,6 @@ return (
                  <p className={classes.p__error}>{passError}</p>
            </div>
          
-         <div className={classes.div__recaptcha}>
-         <Recaptcha
-          sitekey="6LdeKMIaAAAAAKqTK1fu3QZUmB7Lzu0A804Ln1hN"
-          render="explicit"
-          onloadCallback={RecapchaLoaded}
-          verifyCallback={handleCheckboxInput}
-          />  
-        </div>
-         
         <div className={classes.div__usererror}>
         <p className={classes.p__error2}>{checkboxErr}</p>
         </div>
@@ -618,16 +562,8 @@ return (
          </div>
         
           <hr className={classes.hr__or}/>
-          <p  className={classes.p__or}> OR </p>
-          <br />
           
-         <div>
-            {fbContent}
-          </div>
-
-          <br />
-          <hr />
-          <p> Already have an account? Log in <Link to ="/login" id="login-here-link">here </Link> </p>
+          <p> Log in <Link to ="/login" id="login-here-link">here </Link> </p>
           <br />
           </form>
   </div>
