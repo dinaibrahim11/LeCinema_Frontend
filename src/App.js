@@ -6,7 +6,6 @@ import Main from './components/Main/Main';
 import Welcome from './components/Welcome/Welcome';
 import Login from './components/Login/Login';
 import ForgetPassword from './components/ForgetPassword/ForgetPassword'
-import Home from './pages/Home/Home';
 import ResetPassword from './components/ResetPassword/ResetPassword'
 import ResetPasswordSuccess from './components/ResetPasswordSuccess/ResetPasswordSuccess'
 import ForgetPasswordSuccess from './components/ForgetPasswordSuccess/ForgetPasswordSuccess';
