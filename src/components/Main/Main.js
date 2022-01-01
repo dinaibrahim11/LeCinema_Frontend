@@ -20,6 +20,8 @@ import ResetPasswordSuccess from '../../components/ResetPasswordSuccess/ResetPas
 import ForgetPasswordSuccess from '../../components/ForgetPasswordSuccess/ForgetPasswordSuccess';
 import Signup from '../../components/Signup/Signup';
 import FormSuccess from '../../components/FormSuccess/FormSuccess';
+import Movie from '../../components/Movie/Movie'
+import MovieList from '../../components/MovieList/MovieList'
 
 /**
  * Responsible for the routing of the whole website
@@ -49,6 +51,9 @@ const Main = (props) => {
                 <Route exact path="/photos/:id" component={PostDetail} />
                 <Route exact path='/Unauthorized' component={Unauthorized} />
                 <Route exact path="/organize" component={Organizer}/>
+                
+                <Route exact path="/movie/:movieTitle" component={Movie}/>
+                <Route exact path="/movielist" component={MovieList}/>
                 
             </Switch>
             
