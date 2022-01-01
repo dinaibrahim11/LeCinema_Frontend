@@ -3,7 +3,6 @@ import {BrowserRouter} from 'react-router-dom'
 import './App.css';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
-import Welcome from './components/Welcome/Welcome';
 import Login from './components/Login/Login';
 import ForgetPassword from './components/ForgetPassword/ForgetPassword'
 import ResetPassword from './components/ResetPassword/ResetPassword'

@@ -8,7 +8,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Unauthorized from '../Unauthorized/Unauthorized';
 import { useSelector } from 'react-redux';
 
-import Welcome from '../../components/Welcome/Welcome';
+import Explore from '../../components/Explore/ExplorePage';
 import Login from '../../components/Login/Login';
 import ForgetPassword from '../../components/ForgetPassword/ForgetPassword'
 import ResetPassword from '../../components/ResetPassword/ResetPassword'
@@ -32,7 +32,7 @@ const Main = (props) => {
     return (
         <main>
             <Switch>
-                <Route exact path="/" component={Welcome} />
+                <Route exact path="/" component={Explore} />
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/signup" component={Signup}/>
                 <Route exact path="/post-signup" component={FormSuccess} />

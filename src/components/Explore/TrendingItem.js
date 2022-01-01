@@ -17,11 +17,9 @@ import ForumIcon from '@material-ui/icons/Forum';
 import {Grid} from "@material-ui/core"
 import { useSelector } from 'react-redux';
 import ButtonGroup from '@material-ui/core/ButtonGroup'
-import YouAbout from '../../pages/YouAbout/YouAbout';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
-import YouCameraRoll from '../../pages/YouCameraRoll/YouCameraRoll';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
