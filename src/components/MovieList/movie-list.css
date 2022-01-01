@@ -14,3 +14,8 @@
     height:40vh;
     flex-grow: 1;
 }
+
+#add-movie-button-container {
+    text-align:center;
+    margin-top: 1%;
+}

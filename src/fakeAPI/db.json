@@ -1,8 +1,7 @@
 {
-  "movies":
-  [
+  "movies": [
     {
-      "_id": "61cc9a200431bef0bff7d267",
+      "id": "61cc9a200431bef0bff7d267",
       "title": "title0",
       "date": "12/29/2021",
       "startTime": "12:30:00 PM",
@@ -12,7 +11,7 @@
       "__v": 0
     },
     {
-      "_id": "61cc9a200431bef0bff7d269",
+      "id": "61cc9a200431bef0bff7d269",
       "title": "title1",
       "date": "12/29/2021",
       "startTime": "12:30:00 PM",
@@ -22,14 +21,12 @@
       "__v": 0
     },
     {
-      "_id": "61cc9a200431bef0bff7d26b",
       "title": "title2",
       "date": "12/29/2021",
       "startTime": "3:00:00 PM",
-      "endTime": "8:00:00 PM",
-      "screenRoom": 0,
+      "endTime": "",
       "posterImage": "https://th.bing.com/th/id/OIP.JKg5jUI1a2J4ehkbmQ-SZgHaD5?w=297&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7",
-      "__v": 0
+      "id": "61cc9a200431bef0bff7d26b"
     }
   ]
 }

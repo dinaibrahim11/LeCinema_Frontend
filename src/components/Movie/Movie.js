@@ -10,7 +10,7 @@ const Movie = () => {
     
     useEffect(() => {
         // fetch("http://localhost:8000/api/movies/" + "title")
-        fetch("http://localhost:8000/movies/?title=" + movieTitle)
+        fetch("http://localhost:8000/movies/?title=" + movieTitle) // get specific movie (GET)
             .then(res => {
                 return res.json();
             })

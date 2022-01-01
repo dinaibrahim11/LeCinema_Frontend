@@ -1,10 +1,50 @@
 
 import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom"; 
+import './moviedetails.css'
+
 const MovieDetails = (props) => {
     const movie = props.movie;
-    console.log(movie);
+    const [showModal, setShowModal] = useState(false);
+    const [title, setTitle] = useState(movie.title);
+    const [date, setDate] = useState(movie.date);
+    const [startTime, setStartTime] = useState(movie.startTime);
+    const [endTime, setEndTime] = useState(movie.endTime);
+    const [posterImage, setPosterImage] = useState(movie.posterImage);
+    
+    const history = useHistory();
 
-    return (  
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const movie2 = { title, date, startTime, endTime, posterImage };
+        console.log(movie._id);
+        // fetch("http://localhost:8000/api/movies/" + "title")
+        fetch("http://localhost:8000/movies/" + movie.id, { // Edit movie (PUT)
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(movie2)
+        })
+            .then(() => {
+                // console.log(movie2);
+                history.push("/movie/" + movie2.title);
+                window.location.reload();
+            })
+    }
+
+    const deleteMovie = () => {
+        fetch('http://localhost:8000/movies/' + movie.id, {
+            method: 'DELETE'
+            }).then(() => {
+            history.push('/movielist');
+            }) 
+    }
+
+
+return (
+    <span>
         <div className="movie-container">
             <img className="poster-image" src={movie.posterImage} alt={`${movie.title}-poster`} />
             <div className="movie-details">
@@ -13,12 +53,58 @@ const MovieDetails = (props) => {
                 <p className="start-time"><span className="bold">Start Time: </span>{movie.startTime}</p>
                 <p className="end-time"><span className="bold">End Time: </span>{movie.endTime}</p>
                 <p className="screening-room"><span className="bold">Screening Room: </span>{movie.screenRoom}</p>
-                
+
                 <Button variant="primary" className="reserve-seat-button">Reserve a Seat</Button>
                 <Button variant="success" className="view-seat-button">View Vacant Seats</Button>
+
+                <Button variant="primary" className="edit-details-button" onClick={() => setShowModal(true)}>Edit Details</Button>
             </div>
         </div>
-    );
+        <Modal
+            show={showModal}
+            onHide={() => setShowModal(false)}
+            size="xl"
+            aria-labelledby="example-custom-modal-styling-title"
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="example-custom-modal-styling-title">
+                    Edit "{movie.title}" Details
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control required onChange={(e) => setTitle(e.target.value)} defaultValue={movie.title} />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Date</Form.Label>
+                        <Form.Control required onChange={(e) => setDate(e.target.value)} defaultValue={movie.date} />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Start Time</Form.Label>
+                        <Form.Control required onChange={(e) => setStartTime(e.target.value)} defaultValue={movie.startTime} />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>End Time</Form.Label>
+                        <Form.Control required onChange={(e) => setEndTime(e.target.value)} defaultValue={movie.endTime} />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Poster Image URL</Form.Label>
+                        <Form.Control required onChange={(e) => setPosterImage(e.target.value)} defaultValue={movie.posterImage} />
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">
+                        Update
+                    </Button>
+                    <Button id="delete-button" variant="danger" onClick={() => {if (window.confirm("Are you sure you want to delete this movie?")) deleteMovie();}}>
+                        Delete
+                    </Button>
+                </Form>
+            </Modal.Body>
+        </Modal>
+    </span>
+);
 }
- 
+
 export default MovieDetails;
