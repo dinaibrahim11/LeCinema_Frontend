@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import Login from '../../components/Login/Login';
 import Signup from '../../components/Signup/Signup';
 import FormSuccess from '../../components/FormSuccess/FormSuccess';
+import Home from './components/Home/Home';
 
 /**
  * Responsible for the routing of the whole website
@@ -23,6 +24,7 @@ const Main = (props) => {
     return (
         <main>
             <Switch>
+            <Route exact path="/" component={Home}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/signup" component={Signup}/>
                 <Route exact path="/post-signup" component={FormSuccess} />

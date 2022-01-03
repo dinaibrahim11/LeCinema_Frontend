@@ -14,8 +14,6 @@ $ npm install
 $ npm start
 ```
 
-Or you can go directly to our deployed website: https://www.flickrclone.tech/
-
 ## This project was done with:
 
 - React js
