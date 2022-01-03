@@ -36,11 +36,6 @@
     min-height: 100vh;
 }
 
-.hr__or
-{
-    margin-top: 20px;
-    width: 410px;
-}
 
 .p__or
 {
@@ -156,7 +151,7 @@
     box-shadow: none;
     box-sizing: content-box;
 
-  
+  color: #000;
     text-rendering: auto;
     letter-spacing: normal;
     word-spacing: normal;
