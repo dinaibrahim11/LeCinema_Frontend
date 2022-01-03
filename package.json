@@ -16,6 +16,7 @@
     "@testing-library/user-event": "^12.8.3",
     "apidoc": "^0.28.1",
     "axios": "^0.21.1",
+    "boostrap": "^2.0.0",
     "bootstrap": "^4.6.0",
     "bootstrap-icons": "^1.4.1",
     "create-react-app": "^5.0.0",

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import Login from '../../components/Login/Login';
 import Signup from '../../components/Signup/Signup';
 import FormSuccess from '../../components/FormSuccess/FormSuccess';
-import Home from './components/Home/Home';
+import Home from '../../components/Home/Home';
 
 /**
  * Responsible for the routing of the whole website
