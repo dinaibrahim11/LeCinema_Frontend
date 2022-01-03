@@ -1,0 +1,22 @@
+.seat-box {
+    display: block;
+    width: 80px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.available-seat {
+    background-color: lightgreen;
+}
+
+.unavailable-seat {
+    background-color: lightcoral;
+}
+
+.selected-seat {
+    background-color: lightblue;
+}
