@@ -20,7 +20,6 @@ Or you can go directly to our deployed website: https://www.flickrclone.tech/
 
 - React js
 - CSS
-- Material UI
 - Redux Toolkit for state management
 - Jest for unit testing
 
