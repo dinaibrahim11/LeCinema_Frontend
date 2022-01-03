@@ -2,7 +2,6 @@ import React from 'react' ;
 import ReactDOM from 'react-dom' ;
 import Login from './Login';
 import {render, cleanup, fireEvent} from '@testing-library/react'
-
 import store from '../../storev2/store';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -20,13 +19,13 @@ it("renders without crashing", ()=> {
     ReactDOM.render(<Provider store={store}> <Router ><Login /> </Router></Provider>, div);
 })
 
-test('testing emailInput', () => {
+test('testing usernameInput', () => {
 
 const {queryByTestId} = render(<Provider store={store}> <Router ><Login /> </Router></Provider>);
-const emailInput = queryByTestId("email_input");
+const userNameInput = queryByTestId("username_input");
 
- fireEvent.change(emailInput, {target: {value:"esraahamedabdalla@hotmail.com"}});
- expect(emailInput.value).toBe("esraahamedabdalla@hotmail.com");
+ fireEvent.change(userNameInput, {target: {value:"dina"}});
+ expect(userNameInput.value).toBe("dina");
 
 })
 

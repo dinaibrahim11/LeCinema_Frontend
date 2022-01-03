@@ -1,50 +1,49 @@
 {
-
   "users": [
-    
-    
     {
-      "firstname": "laila",
-      "lastname": "ahmed",
-      "age": "21",
-      "emailaddress": "lailaaaa@gmail.com",
-      "password": "laila-password",
-      "id": 6
+      "_id": "61cca40c152c0d9930af8808",
+      "userName": "hany1",
+      "password": "000",
+      "firstName": "ahmed",
+      "lastName": "hany",
+      "email": "ah@gmail.com",
+      "role": "Site Administrator",
+      "beManager": false,
+      "__v": 0
     },
     {
-      "firstname": "Radwa",
-      "lastname": "Mohamed",
-      "age": "22",
-      "emailaddress": "radwaaaamoh@gmail.com",
-      "password": "radwa-mohamed",
-      "id": 7
+      "_id": "61cca40c152c0d9930af8809",
+      "userName": "hab0",
+      "password": "0000",
+      "firstName": "ahmed0",
+      "lastName": "hany0",
+      "email": "ah0@gmail.com",
+      "role": "Customer",
+      "beManager": true,
+      "__v": 0
     },
     {
-      "firstname": "arwa",
-      "lastname": "mohamed",
-      "age": "25",
-      "emailaddress": "arwaa_mohamed@gmail.com",
-      "password": "arwa-password",
-      "id": 8
-    }
-  ],
-
-  "posts": [
+      "_id": "61cca40c152c0d9930af880b",
+      "userName": "hab1",
+      "password": "0001",
+      "firstName": "ahmed1",
+      "lastName": "hany1",
+      "email": "ah1@gmail.com",
+      "role": "CUSTOMER",
+      "beManager": true,
+      "__v": 0
+    },
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "_id": "61cca40c152c0d9930af880d",
+      "userName": "hab2",
+      "password": "0002",
+      "firstName": "ahmed2",
+      "lastName": "hany2",
+      "email": "ah2@gmail.com",
+      "role": "Customer",
+      "beManager": false,
+      "__v": 0
     }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
-
+  ]
+    
 }

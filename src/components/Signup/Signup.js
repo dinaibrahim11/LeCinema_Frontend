@@ -564,11 +564,6 @@ return (
                 <p className={classes.p__error}>{lnError}</p>
          </div>
 
-         <div className={classes.div__input}>
-          <input type="text" placeholder="Age" className={classes.div__inputfield} id="signup-age-field" data-testid="age"
-                  onChange={handleAgeInput} value={age}/>
-          <p className={classes.p__error}>{ageError}</p>
-         </div>
 
          <div className={classes.div__input}>
           <input type="email" placeholder="Email address" className={classes.div__inputfield} id="signup-email-field" data-testid="email"
