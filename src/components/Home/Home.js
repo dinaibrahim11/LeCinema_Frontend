@@ -28,15 +28,8 @@ const Home = () => {
 	return (
 		<div className='container-fluid movie-app'>
 		<div className='row d-flex align-items-center mt-4 mb-4'>
-			<MovieListHeading heading="What's on" />
+			<MovieListHeading heading="MOVIES" />
 			<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-		</div>
-		<div className='row'>
-			<MovieList movies={movies} />
-		</div>
-		<div className='row d-flex align-items-center mt-4 mb-4'>
-			<MovieListHeading heading="Coming soon" />
-			
 		</div>
 		<div className='row'>
 			<MovieList movies={movies} />
