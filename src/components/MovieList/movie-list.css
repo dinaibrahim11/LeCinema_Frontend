@@ -1,0 +1,21 @@
+.movie-list {
+    padding-top: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    grid-gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie-image {
+    height:40vh;
+    flex-grow: 1;
+}
+
+#add-movie-button-container {
+    text-align:center;
+    margin-top: 1%;
+}
