@@ -38,10 +38,6 @@ const MovieDetails = (props) => {
             })
     }
 
-    const handleSeatSubmit = (event) => {
-
-    }
-
     const deleteMovie = () => {
         fetch('http://localhost:8000/movies/' + movie.id, {
             method: 'DELETE'
@@ -125,7 +121,7 @@ return (
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Seats seats={movie.seats} change={false} />
+                <Seats seats={movie.seats} change={false} movie={movie} />
             </Modal.Body>
         </Modal>
 
@@ -140,7 +136,7 @@ return (
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Seats seats={movie.seats} change={true} />
+                <Seats seats={movie.seats} change={true} movie={movie}/>
             </Modal.Body>
         </Modal>
 

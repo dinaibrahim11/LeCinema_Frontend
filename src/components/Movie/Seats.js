@@ -1,8 +1,9 @@
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form';
 import React, { useState } from 'react';
 import './seats.css'
 
-const Seats = ({ seats, change }) => {
+const Seats = ({ seats, change, movie }) => {
     const [selected, setSelected] = useState([]); /* Array of seats ? or at least, array of states*/
 
     const handleSelected = (seat) => {
@@ -17,6 +18,28 @@ const Seats = ({ seats, change }) => {
         }
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // fetch("http://localhost:8000/api/movies/" + "title")
+        console.log(movie.seats);
+        console.log(selected);
+        for (let i = 0; i < movie.seats.length; i++) {
+            if (selected.includes(movie.seats[i].id)) {
+                movie.seats[i].reserved = true;
+            }
+        } 
+        
+        fetch("http://localhost:8000/movies/" + movie.id, { // Edit movie (PUT)
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(movie)
+        })
+        .then(() => {
+            window.location.reload();
+        })
+            
+    }
+
     return (
         <div>
             <div class="seat-grid">
@@ -27,9 +50,19 @@ const Seats = ({ seats, change }) => {
             {change &&
             <div className="center-content">
                 <br />
-                    <Button variant="outline-info" id="reserve-selected-seats-button">
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Credit Card</Form.Label>
+                        <Form.Control required type="number"/>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>PIN</Form.Label>
+                        <Form.Control required type="number"/>
+                    </Form.Group>
+                    <Button variant="outline-info" id="reserve-selected-seats-button" type={(selected == "") ? "" : "submit"}>
                         Reserve Selected Seats
                     </Button>
+                </Form>
                     </div>
                 }
         </div>
