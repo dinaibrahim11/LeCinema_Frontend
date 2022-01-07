@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react' ;
 import {Link} from 'react-router-dom';
-import { Redirect } from "react-router-dom";
+import { Redirect,useHistory } from "react-router-dom";
 import classes from './Login.module.css';
 import { useDispatch } from 'react-redux';
 import { usersActions } from '../../storev2/users-slice';
@@ -10,14 +10,12 @@ import API from '../../fakeAPI';
 
 /**
  * Login existing user
- * @author 
  * @async
  * @example <Login />
  * @returns {element} The Login form contents
  *
  */
 const Login = () => {
-
 const dispatch = useDispatch();
 const apiURL = "http://localhost:3000/users" ;   //json server
 
@@ -148,7 +146,6 @@ const validateLoginInfo = () => {
           password: password, 
           userId: res.data.data.user._id,
           token: res.data.token,
-          displayName: res.data.data.user.displayName,
           firstName: res.data.data.user.firstName,
           lastName: res.data.data.user.lastName
         }));
@@ -184,18 +181,18 @@ if(redirect) {
         <div className="page" >
         <div className={classes.div__login_page}>
        
-           <form className={`${classes.login__page} ${classes.form__login}`} onSubmit={handleSubmit} data-testid="form">
+           <form className={`${classes.login__page} ${classes.form__login}`} onSubmit={handleSubmit}>
                 <h5 className={classes.h5__center}> Login to leCinema </h5>
        
                 <div className={classes.div__input}>
                  <input type="username" placeholder="username" className={classes.div__inputfield}  id="login-username-field"
-                        onChange={handleuserNameInput} value={userName} data-testid="username_input" />
+                        onChange={handleuserNameInput} value={userName}  />
                         <p className={classes.p__error}>{usernameError}</p>
                 </div>
        
                 <div className={classes.div__input}>
                  <input type="password" placeholder="password" className={classes.div__inputfield} id="login-psswrd-field"
-                        onChange={handlePasswordInput} value={password} data-testid="password_input"/>
+                        onChange={handlePasswordInput} value={password} />
                         <p className={classes.p__error}>{passError}</p>
                   </div>
 
@@ -205,7 +202,7 @@ if(redirect) {
        
                 <div className={classes.div__input}>
                   {/* TODO: check if center not working, import from classes */}
-                <button className={classes.div_loginbutton} id="login-signin-btn" data-testid="button"> Login </button>
+                <button className={classes.div_loginbutton} id="login-signin-btn" > Login </button>
                 </div>       
 
                   

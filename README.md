@@ -1,6 +1,6 @@
 # Le-Cinema Frontend
 
-This is the project for the course Software Engineering 2021, were we are making an image hosting website as flickr.
+This is the project for the course Consulting Engineering 2021, were we are making a cinema reservation website as voxCinemas.
 
 ## How to run:
 
