@@ -130,6 +130,7 @@ const validateLoginInfo = () => {
     if(userName && password) {
       setUserError('');
     } else {
+      
       return;
     }
 

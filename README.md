@@ -19,7 +19,6 @@ $ npm start
 - React js
 - CSS
 - Redux Toolkit for state management
-- Jest for unit testing
 
 ## Functionalities
 
