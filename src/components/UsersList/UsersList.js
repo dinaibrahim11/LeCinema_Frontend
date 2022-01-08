@@ -16,9 +16,11 @@ useEffect(() => {
 
 
 function getUsers(){
-    fetch("http://localhost:8000/api/users").then((result)=>{
-        result.json().then(resp => {
-            setUsers(resp)
+    fetch("http://localhost:8000/api/users",{
+      method: "GET"
+    }).then((res)=>{
+        res.json().then(result => {
+            setUsers(result)
         })
     })
 }
@@ -26,10 +28,13 @@ console.warn(users)
 
 function authorize(id)
 {
+  //console.log(id);
   let data={role}
-setRole("Manager")
+  //console.log(data);
+
+  setRole("Manager")
   fetch("http://localhost:8000/api/users/"+id, {
-    method: "POST",
+    method: "PUT",
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -39,15 +44,20 @@ setRole("Manager")
     // console.warn("resp",resp);;
     resp.json().then((result)=>{
       console.warn("result",result)
-      getUsers();
+      //window.location.reload();
+      getUsers(); 
     })
+  }).catch((err) => {
+    console.log(err);
   })
 }
-function deleteuser(email)
+
+function deleteuser(id)
 {
+  console.log(id);
   // TODOO: by id
-  fetch('http://localhost:8000/api/users/${email}', {
-    method: "POST",
+  fetch('http://localhost:8000/api/users/'+id, {
+    method: "DELETE",
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -56,9 +66,10 @@ function deleteuser(email)
     // console.warn("resp",resp);;
     resp.json().then((result)=>{
       console.warn(result)
+      window.location.reload();
       getUsers();
     })
-  })
+  }).catch((err) => console.log(err));
 }
 
 
@@ -79,7 +90,7 @@ function deleteuser(email)
                     <th>delete account</th>
                 </tr>
                 {users && users.map((user) => (
-                    <tr className="movie" key={user.id}>
+                    <tr className="movie" key={user._id}>
                         <td>
                             {user.firstName} 
                         </td>
@@ -96,8 +107,8 @@ function deleteuser(email)
                         <td>
                             {user.role}
                         </td>
-                        <td><Button onClick= {()=>authorize(user.id)}>authorize</Button></td>
-                        <td><Button onClick= {()=>deleteuser(user.email)}>delete</Button></td>
+                        <td><Button onClick= {()=>authorize(user._id)}>authorize</Button></td>
+                        <td><Button onClick= {()=>deleteuser(user._id)}>delete</Button></td>
                     </tr>
                 ))}
             </table>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react' ;
+import React, { useState } from 'react' ;
 import {Link} from 'react-router-dom';
 import { Redirect } from "react-router-dom";
 import  './Login.css';
@@ -41,6 +41,11 @@ const handlePasswordInput = (e) => {
     
 }
 const login = () => {
+
+
+
+
+  
   API.post('/signin', {
     "userName": userName,
     "password": password
@@ -75,26 +80,26 @@ if(redirect) {
 }
     return (     
         <div className="page" >
-        <div className="div__login_page">
-           <form className="form__login" onSubmit={handleSubmit} >
-                <h5 className="h5__center"> Login to leCinema </h5>
+        <div className="div_login_page">
+           <form className="form_login" onSubmit={handleSubmit} >
+                <h5 className="h5_center"> Login to leCinema </h5>
        
-                <div className="div__input">
-                 <input type="username" placeholder="username" className="div__inputfield" 
+                <div className="div_input">
+                 <input type="username" placeholder="username" className="div_inputfield" 
                         onChange={handleuserNameInput} value={userName}  />
-                        <p className="p__error">{usernameError}</p>
+                        <p className="p_error">{usernameError}</p>
                 </div>
-                <div className="div__input">
-                 <input type="password" placeholder="password" className="div__inputfield" 
+                <div className="div_input">
+                 <input type="password" placeholder="password" className="div_inputfield" 
                         onChange={handlePasswordInput} value={password} />
-                        <p className="p__error">{passError}</p>
+                        <p className="p_error">{passError}</p>
                   </div>
 
-                  <div className="div__usererror">
-                    <p className="p__error2">{userError}</p>
+                  <div className="div_usererror">
+                    <p className="p_error">{userError}</p>
                   </div>
        
-                <div className="div__input">
+                <div className="div_input">
                 <button className="div_loginbutton" > Login </button>
                 </div>       
                  <p> Signup <Link to ="/signup" > here </Link> </p>

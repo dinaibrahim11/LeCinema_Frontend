@@ -109,7 +109,7 @@ const Header = (props) => {
                 <a href="/" className="menu-item-link icon-left">
                   <span className="menu_title">Movies</span></a></li>
               <li className="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-default menu-item-lv0">
-                <a href="/" className="menu-item-link icon-left">
+                <a href="/movielist" className="menu-item-link icon-left">
                   <span className="menu_title">What's on</span></a></li>
                   <li className="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-default menu-item-lv0">
                     <a href="/" className="menu-item-link icon-left"><span className="menu_title">Coming soon</span>
@@ -125,7 +125,11 @@ const Header = (props) => {
                   <span className="menu_title">IMAX</span><i className="icon-has-children fa fa-angle-down" /></a></li>
                   <li className="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-default menu-item-lv0">
               <a href="/" className="menu-item-link icon-left"><span className="menu_title">4D</span>
-              <i className="icon-has-children fa fa-angle-down" /></a></li></ul></div></div></div></div></div></div></div></div></header></div>
+              <i className="icon-has-children fa fa-angle-down" /></a></li>
+              <li className="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-default menu-item-lv0">
+              <a href="/userslist" className="menu-item-link icon-left"><span className="menu_title">permissions</span>
+              <i className="icon-has-children fa fa-angle-down" /></a></li>
+              </ul></div></div></div></div></div></div></div></div></header></div>
               
              </div></div>
          </div>

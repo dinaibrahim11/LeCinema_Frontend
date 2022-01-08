@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import classes from './Signup.css'
+import './Signup.css'
 import {Link} from 'react-router-dom'
 import { Redirect } from "react-router-dom";
 import API from '../../API';
@@ -60,7 +60,6 @@ const options = ["Customer", "Manager"];
   const [emailError, setemailError] = useState();
   const [passError, setpassError] = useState();
   const [confirmpassError, setconfirmpassError] = useState();
-  const [errorcount, setErrorCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [userError, setUserError] = useState('');
@@ -83,7 +82,7 @@ const options = ["Customer", "Manager"];
   setFirstname(e.target.value);
 
   if(e.target.value) 
-  {setfnError(''); setErrorCount(0)}
+  {setfnError(''); }
   else {
     setfnError('First name required')
   }
@@ -92,7 +91,7 @@ const options = ["Customer", "Manager"];
   setLastname(e.target.value); 
 
   if(e.target.value) 
-  {setlnError(''); setErrorCount(0)}
+  {setlnError(''); }
   else {
     setlnError('Last name required')
   }
@@ -102,7 +101,7 @@ const options = ["Customer", "Manager"];
     setuserName(e.target.value); 
   
     if(e.target.value) 
-    {setusernameError(''); setErrorCount(0)}
+    {setusernameError('');}
     else {
       setusernameError('Username required')
     }
@@ -113,13 +112,11 @@ const options = ["Customer", "Manager"];
   
   if(!e.target.value){
     setemailError('Email is required');
-    setErrorCount(1);
   }
   else if (!/\S+@\S+\.\S+/.test(e.target.value)) {
     setemailError('Email address is invalid');
-    setErrorCount(1);
   }
-  else {setemailError(''); setErrorCount(0)}
+  else {setemailError(''); }
   }
 
   const handlePasswordInput = (e) => {
@@ -127,31 +124,26 @@ const options = ["Customer", "Manager"];
 
   if(!e.target.value){
     setpassError('Password is required');
-    setErrorCount(1);
+  
   } else if (e.target.value.length < 8) {
     setpassError('Password should be 8 characters or more');
-    setErrorCount(1);
-  } else {setpassError(''); setErrorCount(0)}
+  } else {setpassError(''); }
   }
   const handleconfirmPasswordInput = (e) => {
     setconfirmPassword(e.target.value);
   
     if(!e.target.value){
       setconfirmpassError('Confirm Password is required');
-      setErrorCount(1);
     } else if (e.target.value !== password) {
-      setconfirmpassError('Confirm Password is wrong');
-      setErrorCount(1);
-    } else {setconfirmpassError(''); setErrorCount(0)}
+      setconfirmpassError('Confirm Password is wrong')
+    } else {setconfirmpassError(''); }
     }
   
 
   
   const signup = () => {
     setisSubmitting(true);
-    let totalErrorCount = 0;
     setfnError(''); 
-    setErrorCount(0);
     setlnError('');
     setusernameError('');
     setemailError('');
@@ -160,58 +152,44 @@ const options = ["Customer", "Manager"];
  
     if(!firstName) {
       setfnError('First name is required');
-      setErrorCount(1);
-      totalErrorCount++;
-    } else{setfnError(''); setErrorCount(0)}
+    } else{setfnError(''); }
 
     if(!lastName) {
         setlnError('Last name is required');
-        setErrorCount(1);
-        totalErrorCount++;
-    } else{setlnError(''); setErrorCount(0)}
+   
+    } else{setlnError(''); }
 
     if(!userName) {
       setusernameError('Username is required');
-      setErrorCount(1);
-      totalErrorCount++;
-  } else{setusernameError(''); setErrorCount(0)}
+   
+  } else{setusernameError('');}
 
     if(!email){
         setemailError('Email is required');
-        setErrorCount(1);
-        totalErrorCount++;
+    
     }
     else if (!/\S+@\S+\.\S+/.test(email)) {
         setemailError('Email address is invalid');
-        setErrorCount(1);
-        totalErrorCount++;
+   
     }
-    else {setemailError(''); setErrorCount(0)}
+    else {setemailError(''); }
 
     if(!password){
         setpassError('Password is required');
-        setErrorCount(1);
-        totalErrorCount++;
+    
     } else if (password.length < 8) {
         setpassError('Password should be 8 characters or more');
-        setErrorCount(1);
-        totalErrorCount++;
+   
     } else {
       if (checkPassword(password)){
         setpassError(''); 
-        setErrorCount(0);
+  
       } else {
         setpassError('Password is weak, should have uppercase, lowercase, and digit');
-        setErrorCount(1);
-        totalErrorCount++;
+      
       }
     }
-
-    console.log("total error count: "+totalErrorCount);
-    if (totalErrorCount > 0) {
-      //alert("cannot");
-      return;
-    }
+  
 
      if(emailError==='' && passError==='' && confirmpassError==='' && usernameError==='' && fnError==='' && lnError===''){
       const userInfo = {
@@ -246,10 +224,12 @@ const options = ["Customer", "Manager"];
               setRedirect("/");
             }
             else {
-              alert("bad sign in");
+              
               setIsUser(false);
-              setUserError('Incorrect username or password')
-              setpassError('');
+              setUserError('Incorrect information')
+
+              return;
+              
             } 
       })
       .catch(err => {
@@ -258,7 +238,7 @@ const options = ["Customer", "Manager"];
        
         if (err.response.data.status === 400) {
           if (err.response.data.message.toString().includes("Duplicate")) {
-            setemailError("duplicate email found");
+            setemailError("email already registered");
           }
           setisSubmitting(false);
         } 
@@ -291,46 +271,46 @@ if(redirect) {
 return (
 
   <div className="page"  >
- <div  className="div__signup_page">
+ <div  className="div_signup_page">
 
-    <form className="form__signup_page" onSubmit={handleSubmit}>
+    <form className="form_signup_page" onSubmit={handleSubmit}>
          <h5 className="classes.center"> Signup to leCinema</h5>
 
          <div className="classes.div__input">
-         <input type="text" placeholder="First name" className="div__inputfield" 
+         <input type="text" placeholder="first name" className="div_inputfield" 
                 onChange={handleFirstNameInput} value={firstName} />
-               <p className="p__error">{fnError}</p>
+               <p className="p_error">{fnError}</p>
          </div>
 
-         <div className="div__input">
-         <input type="text" placeholder="Last name" className="div__inputfield"  
+         <div className="div_input">
+         <input type="text" placeholder="last name" className="div_inputfield"  
                 onChange={handleLastNameInput} value={lastName} />
-                <p className="p__error">{lnError}</p>
+                <p className="p_error">{lnError}</p>
          </div>
 
-         <div className="div__input">
-         <input type="text" placeholder="Username" className="div__inputfield"  
+         <div className="div_input">
+         <input type="text" placeholder="username" className="div_inputfield"  
                 onChange={handleUserNameInput} value={userName} />
-                <p className="p__error">{usernameError}</p>
+                <p className="p_error">{usernameError}</p>
          </div>
 
 
-         <div className="div__input">
-          <input type="email" placeholder="Email address" className="div__inputfield"  
+         <div className="div_input">
+          <input type="email" placeholder="email address" className="div_inputfield"  
                  onChange={handleEmailInput} value={email} />
-                 <p className="p__error">{emailError}</p>
+                 <p className="p_error">{emailError}</p>
          </div>
 
-         <div className={classes.div__input}>
-          <input type="password" placeholder="Password" className="div__inputfield" 
+         <div className="div_input">
+          <input type="password" placeholder="password" className="div_inputfield" 
                  onChange={handlePasswordInput} value={password} />
-                 <p className="p__error">{passError}</p>
+                 <p className="p_error">{passError}</p>
            </div>
            
-         <div className="div__input">
-          <input type="password" placeholder="Confirm Password" className="div__inputfield" 
+         <div className="div_input">
+          <input type="password" placeholder="confirm password" className="div_inputfield" 
                  onChange={handleconfirmPasswordInput} value={confirmpassword} />
-                 <p className="p__error">{confirmpassError}</p>
+                 <p className="p_error">{confirmpassError}</p>
            </div>
            
       
@@ -351,7 +331,7 @@ return (
           </DropDownListContainer>
         )}
       </DropDownContainer>
-         <div className="div__input">
+         <div className="div_input">
          <button className="div_signupbutton" >Sign up</button>
          </div>
           

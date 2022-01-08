@@ -62,7 +62,7 @@ const Reservations = () => {
     }
     */
 
-    const handleCancel = (movie) => {
+const handleCancel = (movie) => {
         
         fetch('http://localhost:8000/api/cancelReserve/' + movie, { // NOTE: needs token, currently just deletes movies entirely
             method: 'DELETE', // also it should be reservation id not movie id?
@@ -78,34 +78,7 @@ const Reservations = () => {
             alert("Error! " + err);
         })
 
-        
-        // let t = localStorage.getItem('currentUser')
-        // console.log(JSON.parse(t).token);
-
-        /*
-        let today = new Date();
-        
-        let parts = movieDate.split("/");
-        let partsTime = movieStartTime.split(":");
-        let partsTime2 = partsTime[1].split(" ");
-
-        let dt = new Date(parseInt(parts[2], 10),
-                  parseInt(parts[1], 10) - 1,
-                  parseInt(parts[0], 10),
-                  parseInt(partsTime[0], 10) + (partsTime2[1] == "AM" ? 0 : 12),
-                  parseInt(partsTime2[0], 10));
-
-        // console.log(dt - today);
-        // console.log(dt);        
-
-        if (dt - today >= 3*60*60*1000) { // if difference in time is more than 3 hours (in miliseconds)
-            
-        } else {
-            alert("Too late to cancel reservation.");
-        }
-        */
-
-    }
+}
 
     return (
 
@@ -118,4 +91,4 @@ const Reservations = () => {
     );
 }
 
-export default Reservations;
+ export default Reservations;
