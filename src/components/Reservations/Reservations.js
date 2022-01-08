@@ -43,21 +43,21 @@ const Reservations = () => {
             })
     }, []);
 
-    const getAllMovies = () => {
-        for (let i = 0; i < reservationIDs.length; i++) {
-            useEffect(() => {
-                // fetch("http://localhost:8000/api/movies/" + "title")
-                fetch("http://localhost:8000/api/movies/" + movieNames[i]) // get specific movie (GET)
-                    .then(res => {
-                        return res.json();
-                    })
-                    .then((data) => {
-                        console.log(data[0]);
-                        setMovies(movies => [...movies,data]);
-                    })
-            }, []);
-        }
-    }
+    // const getAllMovies = () => {
+    //     for (let i = 0; i < reservationIDs.length; i++) {
+    //         useEffect(() => {
+    //             // fetch("http://localhost:8000/api/movies/" + "title")
+    //             fetch("http://localhost:8000/api/movies/" + movieNames[i]) // get specific movie (GET)
+    //                 .then(res => {
+    //                     return res.json();
+    //                 })
+    //                 .then((data) => {
+    //                     console.log(data[0]);
+    //                     setMovies(movies => [...movies,data]);
+    //                 })
+    //         }, []);
+    //     }
+    // }
 
     const handleCancel = (movie) => {
         
@@ -117,7 +117,7 @@ const Reservations = () => {
                     <th>Seat Number</th>
                     <th>Cancel Reservation</th>
                 </tr>
-                {reservationIDs && movieNames && getAllMovies() && movies && movies.map((movie) => (
+                {/*reservationIDs && movieNames && getAllMovies() && movies && movies.map((movie) => (
                     <tr className="movie" key={movie.id}>
                         <td>
                             <img src={movie.posterImage} className="movie-img" />
@@ -138,7 +138,7 @@ const Reservations = () => {
                             <Button variant="primary" className="cancel-reservation-button" onClick={() => handleCancel(movie)}>Cancel</Button>
                         </td>
                     </tr>
-                ))}
+                ))*/}
             </table>
         </div>
 

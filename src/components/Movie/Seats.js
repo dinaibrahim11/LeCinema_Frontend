@@ -21,7 +21,7 @@ const Seats = ({ seats, change, movie }) => {
     };
 
     const handleSubmit = (event) => {
-        let token = JSON.parse(localStorage.getItem('currentUser')).token;
+        let token = localStorage.getItem('newToken');
 
         event.preventDefault();
         // fetch("http://localhost:8000/api/movies/" + "title")
@@ -34,10 +34,10 @@ const Seats = ({ seats, change, movie }) => {
         } 
         
         fetch("http://localhost:8000/api/reserve/" + movie.id, { 
-            method: 'PUT',
+            method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
-                'Authorization': token },
+                'Authorization': 'Bearer ' + token },
             body: JSON.stringify({selected, pin, creditCard}) // was previously JSON.stringify({movie})
             // NOTE: needs token
         })

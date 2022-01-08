@@ -54,6 +54,7 @@ const login = () => {
       setIsUser(true);
       setUserError('');
       dispatch(usersActions.login({userName: userName, password: password, token: res.data.token,}));
+      localStorage.setItem('newToken', res.data.token);
       setRedirect("/");
     } else {
 
