@@ -14,6 +14,7 @@ const MovieDetails = (props) => {
     const [startTime, setStartTime] = useState(movie.startTime);
     const [endTime, setEndTime] = useState(movie.endTime);
     const [posterImage, setPosterImage] = useState(movie.posterImage);
+    const [screenRoom, setScreeningRoom] = useState(movie.screenRoom);
 
     const [showSeatsModal, setShowSeatsModal] = useState(false);
     
@@ -23,7 +24,7 @@ const MovieDetails = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const movie2 = { title, date, startTime, endTime, posterImage };
+        const movie2 = { title, date, startTime, endTime, screenRoom, posterImage };
         console.log(movie._id);
         // fetch("http://localhost:8000/api/movies/" + "title")
         fetch("http://localhost:8000/movies/" + movie.id, { // Edit movie (PUT)
@@ -35,6 +36,8 @@ const MovieDetails = (props) => {
                 // console.log(movie2);
                 history.push("/movie/" + movie2.title);
                 window.location.reload();
+            }).catch(err => {
+                alert("Error! " + err);
             })
     }
 
@@ -43,9 +46,12 @@ const MovieDetails = (props) => {
             method: 'DELETE'
             }).then(() => {
             history.push('/movielist');
-            }) 
+            alert("Deleted " + movie.title + " successfully!");
+            
+            }).catch(err => {
+                alert("Error! " + err);
+            })
     }
-
 
 return (
     <span>
@@ -87,13 +93,25 @@ return (
                         <Form.Label>Date</Form.Label>
                         <Form.Control required onChange={(e) => setDate(e.target.value)} defaultValue={movie.date} />
                     </Form.Group>
+                    {
+                        <Form.Group className="mb-3">
+                            <Form.Label>Start Time</Form.Label>
+                            <br />
+                            <select value={startTime} name="startTime" id="startTime" required onChange={e => setStartTime(e.target.value)}>
+                                <option  value="00:00">12:00 AM</option>
+                                <option value="03:00">3:00 AM</option>
+                                <option value="06:00">6:00 AM</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="21:00">9:00 PM</option>
+                            </select>
+                        </Form.Group>
+                    }
                     <Form.Group className="mb-3">
-                        <Form.Label>Start Time</Form.Label>
-                        <Form.Control required onChange={(e) => setStartTime(e.target.value)} defaultValue={movie.startTime} />
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>End Time</Form.Label>
-                        <Form.Control required onChange={(e) => setEndTime(e.target.value)} defaultValue={movie.endTime} />
+                        <Form.Label>Screening Room</Form.Label>
+                        <Form.Control required onChange={(e) => setScreeningRoom(e.target.value)} defaultValue={movie.screenRoom} />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Poster Image URL</Form.Label>

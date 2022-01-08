@@ -5,14 +5,16 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form';
 import { useHistory } from "react-router-dom"; 
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
 const MovieList = () => {
     const [movies, setMovies] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
-    const [startTime, setStartTime] = useState('');
-    const [endTime, setEndTime] = useState('');
+    const [startTime, setStartTime] = useState('00:00');
+    // const [endTime, setEndTime] = useState('');
     const [posterImage, setPosterImage] = useState('');
     const [screenRoom, setScreenRoom] = useState('');
 
@@ -20,17 +22,19 @@ const MovieList = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const movie2 = { title, date, startTime, endTime, posterImage, screenRoom };
-        fetch('http://localhost:8000/movies/', {
+        const movie2 = { title, date, startTime, posterImage, screenRoom };
+        fetch('http://localhost:8000/movies', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(movie2)
         }).then(() => {
-            history.push("/movie/" + movie2.title);
+            // history.push("/movie/" + movie2.title);
+            window.location.reload();
+            alert("Added " + movie2.title + " successfully!");
+        }).catch(err => {
+            alert("Error! " + err);
         })
     }
-        
-    
 
     useEffect(() => {
         fetch("http://localhost:8000/movies")
@@ -40,6 +44,8 @@ const MovieList = () => {
             .then((data) => {
                 console.log(data);
                 setMovies(data);
+            }).catch(err => {
+                alert("Error! " + err);
             })
     }, []);
     
@@ -79,16 +85,37 @@ const MovieList = () => {
                         <Form.Label>Date</Form.Label>
                         <Form.Control required onChange={(e) => setDate(e.target.value)}/>
                     </Form.Group>
+
+                    {
+                        <Form.Group className="mb-3">
+                            <Form.Label>Start Time</Form.Label>
+                            <br />
+                            <select name="startTime" id="startTime" required onChange={e => setStartTime(e.target.value)}>
+                                <option value="00:00">12:00 AM</option>
+                                <option value="03:00">3:00 AM</option>
+                                <option value="06:00">6:00 AM</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="21:00">9:00 PM</option>
+                            </select>
+                        </Form.Group>
+                    }
+                    {/*
                     <Form.Group className="mb-3">
                         <Form.Label>Start Time</Form.Label>
                         <Form.Control required onChange={(e) => setStartTime(e.target.value)}/>
                     </Form.Group>
+                */}
+                    {/*
                     <Form.Group className="mb-3">
                         <Form.Label>End Time</Form.Label>
                         <Form.Control required onChange={(e) => setEndTime(e.target.value)}/>
                     </Form.Group>
+                    */}
                     <Form.Group className="mb-3">
-                        <Form.Label>End Time</Form.Label>
+                        <Form.Label>Screening Room</Form.Label>
                         <Form.Control required onChange={(e) => setScreenRoom(e.target.value)}/>
                     </Form.Group>
                     <Form.Group className="mb-3">
