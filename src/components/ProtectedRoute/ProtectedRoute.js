@@ -1,11 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-/**
- * Prevents unwanted access to pages
- * @author Abdelrahman Mamdouh
- * @returns a component
- */
+
 const ProtectedRoute = ({ component: Component, isLoggedIn, ...rest }) => {
     
     return (
