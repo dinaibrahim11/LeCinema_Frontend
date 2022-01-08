@@ -1,3 +1,54 @@
+
+.placeholder
+{
+    color: rgb(109, 104, 104);
+}
+
+.p__error {
+    color: red;
+    text-align: start;
+    line-height: 50%;
+    font-size: 90%;
+}
+
+
+.div__card {
+    width: 280px;
+    margin-left: 80px;
+    
+}
+
+
+.btn__block {
+    width: 60%;
+}
+
+.div__usererror {
+    padding-top: 2px;
+    padding-bottom: 5%;
+}
+
+
+.p__or
+{
+    background-color:rgb(240, 208, 247);
+    margin: -27px auto 10px;
+    width: 30px;
+}
+
+.div_loginbutton:hover{
+    background-color: #2bbbad;
+}
+
+.div__inputfield:focus {
+    outline: none !important;
+    border-color:  #2bbbad;
+    box-shadow: 0 1.3px #2bbbad;
+}
+
+.div__input {
+    letter-spacing: 20%;
+}
 .h5__center
 {
     color: black;
@@ -25,71 +76,7 @@
   
 }
 
-.div__login_page{
-    height:100%;
-    background-size: cover;
-    background-attachment:fixed;
-    padding-top: 1px;
-    padding-bottom: 30%;
-    min-block-size: 30%;
-       width: 100%;
-    min-height: 100vh;
-}
 
-
-.p__or
-{
-    background-color:rgb(240, 208, 247);
-    margin: -27px auto 10px;
-    width: 30px;
-}
-
-.placeholder
-{
-    color: rgb(109, 104, 104);
-}
-
-.p__error {
-    color: red;
-    text-align: start;
-    line-height: 50%;
-    font-size: 90%;
-}
-
-.p__error2 {
-    color: red;
-    text-align: start;
-    line-height: 30%;
-    font-size: 90%;
-    margin-top: -3%;
-}
-
-.div__card {
-    width: 280px;
-    margin-left: 80px;
-    
-}
-
-.a__forgetpassword {
-  
-    padding-left: 3%;
-    
-}
-
-
-.div__forgotpass {
-    padding-top: 5%;
-    padding-bottom: 2%;
-}
-
-.btn__block {
-    width: 60%;
-}
-
-.div__usererror {
-    padding-top: 2px;
-    padding-bottom: 5%;
-}
 
 .div_loginbutton {
     position: relative;
@@ -132,9 +119,6 @@
     margin-bottom: 3%;
 }
 
-.div_loginbutton:hover{
-    background-color: #2bbbad;
-}
 
 
 .div__inputfield {
@@ -168,16 +152,3 @@
     overflow: visible;
     -webkit-rtl-ordering: logical;
 }
-
-.div__inputfield:focus {
-    outline: none !important;
-    border-color:  #2bbbad;
-    box-shadow: 0 1.3px #2bbbad;
-}
-
-.div__input {
-    letter-spacing: 20%;
-}
-
-
-
