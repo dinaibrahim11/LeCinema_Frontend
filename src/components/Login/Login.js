@@ -67,7 +67,8 @@ const login = () => {
       //alert("sign in is correct");
       setIsUser(true);
       setUserError('');
-      dispatch(usersActions.login({userName: userName, password: password, userId: res.data.token}));
+      dispatch(usersActions.login({userName: userName, password: password,  userId: res.data.data.user._id,
+        token: res.data.token,}));
       setRedirect("/");
     } else {
       //alert("bad sign in");

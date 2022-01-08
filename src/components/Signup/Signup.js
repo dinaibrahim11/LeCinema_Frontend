@@ -8,14 +8,6 @@ import { usersActions } from '../../storev2/users-slice';
 import styled from 'styled-components';
 
 
-/**
- * Signup new user
- * @author 
- * @async
- * @example <Signup />
- * @returns {element} The sign up form contents
- * 
- */
 const Signup = () => {
 
   
@@ -61,6 +53,7 @@ const options = ["Customer", "Manager"];
 
   const dispatch = useDispatch();
 
+  const [isUser, setIsUser] = useState();
   const [redirect, setRedirect] = useState(null);
 
   const [firstName, setFirstname] = useState('');
@@ -81,6 +74,7 @@ const options = ["Customer", "Manager"];
   const [errorcount, setErrorCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [userError, setUserError] = useState('');
 
   const toggling = () => setIsOpen(!isOpen);
 
@@ -92,72 +86,12 @@ const options = ["Customer", "Manager"];
 
   const [isSubmitting, setisSubmitting] = useState(false);
 
-  /**
-   * Handles what happens when form is submitted
-   * 
-   * @param {object} e - the JavaScript event object
-   */
   const handleSubmit = (e) => {
       e.preventDefault();
       setisSubmitting(true);
-      // checkUserInput();
-      // validateInfo();
-      // postDataHandler();
-      // submitForm();
-      signUpUser();
+      signup();
   }   
 
-  /**
-   *  Checks if all inputs are valid, then user will be registered and will be redirected to another form
-   *  that shows the user a message to check his/her email for confirmation 
-   */
-  const submitForm = () => {
-    if(emailError=='' && passError=='' && confirmpassError=='' && fnError=='' && lnError=='' && usernameError=='') {
-      setRedirect("/post-signup");
-    }
-  }
-
-  // ------------------------------------- json server -------------------------------------------//
-
-  /**
-   * Checks the availability of the email, if it's already in the fakeAPI, function will return 'Email unavailable'
-   * It's considered to be part of the email validation, but it's written in a separate function since it has different logic than other validations 
-   * & depends on the server 
-   */
-  const checkUserInput = () => {
-    API.get('users?email=' + email)
-    .then(response => {
-      console.log(response.data);
-      if(response.data.length > 0) {
-        setemailError('Email already resistered try looging in instead');
-      }
-    })
-  }
-
-  /**
-   * Responsible for posting/recording the data inputted by the user in the fakeAPI, but it checks first if all inputs are valid 
-   * 
-   */
-  const postDataHandler = () => {
-  if(emailError==='' && passError===''&& confirmpassError==='' && usernameError==='' && fnError==='' && lnError===''){
-    const userInfo = {
-      firstname : firstName,
-      lastname: lastName,
-      userName: userName,
-      emailaddress: email,
-      password: password 
-    }
-    API.post('users', userInfo)      //json server
-    .then(response => {
-    console.log(response)
-  })
-  }
-  }
-
-  //---------------------------------------- HANDLING INPUTS ---------------------------------------//
-  // ** Handling input functions also contain validations to provide instant validation on typing ** //
-
-  //First Name
   const handleFirstNameInput = (e) => {
   setFirstname(e.target.value);
 
@@ -167,8 +101,6 @@ const options = ["Customer", "Manager"];
     setfnError('First name required')
   }
   }
-
-  //Last Name
   const handleLastNameInput = (e) => {
   setLastname(e.target.value); 
 
@@ -188,18 +120,10 @@ const options = ["Customer", "Manager"];
       setusernameError('Username required')
     }
     }
-  
-  //Email
+
   const handleEmailInput = (e) => {
   setEmail(e.target.value);  
-  // API.get('users?email=' + e.target.value )
-  // .then(response => {
-  //   console.log(response.data);
-  //   if(response.data.length > 0) {
-  //     setemailError('Email unavailable');
-  //   }
-  // })
-
+  
   if(!e.target.value){
     setemailError('Email is required');
     setErrorCount(1);
@@ -211,15 +135,14 @@ const options = ["Customer", "Manager"];
   else {setemailError(''); setErrorCount(0)}
   }
 
-  //Password
   const handlePasswordInput = (e) => {
   setPassword(e.target.value);
 
   if(!e.target.value){
     setpassError('Password is required');
     setErrorCount(1);
-  } else if (e.target.value.length < 12) {
-    setpassError('Password should be 12 characters or more');
+  } else if (e.target.value.length < 8) {
+    setpassError('Password should be 8 characters or more');
     setErrorCount(1);
   } else {setpassError(''); setErrorCount(0)}
   }
@@ -230,14 +153,14 @@ const options = ["Customer", "Manager"];
       setconfirmpassError('Confirm Password is required');
       setErrorCount(1);
     } else if (e.target.value !== password) {
-      setconfirmpassError('Confirm Password should be 12 characters or more');
+      setconfirmpassError('Confirm Password is wrong');
       setErrorCount(1);
     } else {setconfirmpassError(''); setErrorCount(0)}
     }
   
 
   
-  const signUpUser = () => {
+  const signup = () => {
     setisSubmitting(true);
     let totalErrorCount = 0;
     setfnError(''); 
@@ -247,32 +170,25 @@ const options = ["Customer", "Manager"];
     setemailError('');
     setpassError(''); 
     setconfirmpassError('');
-    /**
-     * Insures that all input data is valid
-     * This is what provides instant validation on submiiting the form
-     */
-    //First name
+ 
     if(!firstName) {
       setfnError('First name is required');
       setErrorCount(1);
       totalErrorCount++;
     } else{setfnError(''); setErrorCount(0)}
 
-    //Last name
     if(!lastName) {
         setlnError('Last name is required');
         setErrorCount(1);
         totalErrorCount++;
     } else{setlnError(''); setErrorCount(0)}
 
-    //User name
     if(!userName) {
       setusernameError('Username is required');
       setErrorCount(1);
       totalErrorCount++;
   } else{setusernameError(''); setErrorCount(0)}
 
-    //Email
     if(!email){
         setemailError('Email is required');
         setErrorCount(1);
@@ -285,13 +201,12 @@ const options = ["Customer", "Manager"];
     }
     else {setemailError(''); setErrorCount(0)}
 
-    //Password
     if(!password){
         setpassError('Password is required');
         setErrorCount(1);
         totalErrorCount++;
-    } else if (password.length < 12) {
-        setpassError('Password should be 12 characters or more');
+    } else if (password.length < 8) {
+        setpassError('Password should be 8 characters or more');
         setErrorCount(1);
         totalErrorCount++;
     } else {
@@ -311,49 +226,51 @@ const options = ["Customer", "Manager"];
       return;
     }
 
-    // alert("could");
-    /**
-     * Responsible for posting/recording the data inputted by the user to the server, but it checks first if all inputs are valid 
-     * 
-     */
      if(emailError==='' && passError==='' && confirmpassError==='' && usernameError==='' && fnError==='' && lnError===''){
       const userInfo = {
-        firstName : firstName,
-        lastName: lastName,
-        displayName: email.split("@")[0],
-        userName: userName,
-        email: email,
-        password: password 
+        "firstName" : firstName,
+        "lastName": lastName,
+        "userName": userName,
+        "email": email,
+        "password": password 
        }
-        API.post('user/sign-up', userInfo)      //json server
+        API.post('user/signup', userInfo , {
+          headers: {
+            'content-type': 'application/json'
+          }
+        }) 
           .then(res => {
             console.log(res);
-            if (res.data.status === "success") {
-              //alert("signup is correct");
+            if (res.status === 200) {
+            setIsUser(true);
+            setUserError('');
+    
               dispatch(usersActions.login({
                 email: email, 
                 password: password, 
                 userId: res.data.data.user._id,
                 token: res.data.token,
-                displayName: res.data.data.user.displayName,
-                firstName: res.data.data.user.firstName,
-                lastName: res.data.data.user.lastName
+                userName: userName,
+                firstName: firstName,
+                lastName: lastName
               }));
-              //setisSubmitting(false);
-              // TODO: change to email confirmation screen
-              setRedirect("/home");
+              setRedirect("/");
+            }
+            else {
+              alert("bad sign in");
+              setIsUser(false);
+              setUserError('Incorrect username or password')
+              setpassError('');
             } 
       })
       .catch(err => {
         console.log(err.response);
         console.log(err.response.data.status);
        
-        if (err.response.data.status === "fail") {
-          //alert("status 400");
+        if (err.response.data.status === 400) {
           if (err.response.data.message.toString().includes("Duplicate")) {
             setemailError("duplicate email found");
           }
-          //setpassError(err.response.data.message);
           setisSubmitting(false);
         } 
       })
@@ -363,7 +280,6 @@ const options = ["Customer", "Manager"];
 
 
     const checkGoodPassword = (str) => {
-      let acceptable = false;
       let upperCaseGood = false;
       let digitGood = false;
       let lowerCaseGood = false;
@@ -390,66 +306,6 @@ const options = ["Customer", "Manager"];
       return (upperCaseGood && lowerCaseGood && digitGood && specialGood);
     }
 
-    const checkStrongPassword = (pswd) => {
-      var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
-      alert(pswd);
-      if(pswd.toString().match(decimal)) 
-      { 
-      alert('Correct, try another...')
-      return true;
-      } else {
-        alert("so weakkk");
-        return false;
-      }
-    }
-
-// ---------------------------------------- VALIDATIONS ---------------------------------------------- //
-// **Beside the validations written inside handling functions, we also need separate validation function ** //
-
-/**
- * Insures that all input data is valid
- * This is what provides instant validation on submiiting the form
- */
- const validateInfo = () => {
-
-    //First name
-    if(!firstName) {
-        setfnError('First name is required');
-        setErrorCount(1);
-    } else{setfnError(''); setErrorCount(0)}
-
-    //Last name
-    if(!lastName) {
-        setlnError('Last name is required');
-        setErrorCount(1);
-    } else{setlnError(''); setErrorCount(0)}
-    if(!userName) {
-      setusernameError('Last name is required');
-      setErrorCount(1);
-  } else{setusernameError(''); setErrorCount(0)}
-
-    //Email
-    if(!email){
-        setemailError('Email is required');
-        setErrorCount(1);
-    }
-    else if (!/\S+@\S+\.\S+/.test(email)) {
-        setemailError('Email address is invalid');
-        setErrorCount(1);
-    }
-    else {setemailError(''); setErrorCount(0)}
-
-    //Password
-    if(!password){
-        setpassError('Password is required');
-        setErrorCount(1);
-    } else if (password.length < 12) {
-        setpassError('Password should be 12 characters or more');
-        setErrorCount(1);
-    } else {setpassError(''); setErrorCount(0)}
-
-} 
- 
 // ------------------------------------------ RETURN -------------------------------------------------- //
 
 if(redirect) {
@@ -521,8 +377,6 @@ return (
           </DropDownListContainer>
         )}
       </DropDownContainer>
-    
-
          <div className={classes.div__input}>
          <button className={classes.div_signupbutton} id="signup-btn" data-testid="button">Sign up</button>
          </div>
