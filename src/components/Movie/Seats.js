@@ -5,8 +5,8 @@ import './seats.css'
 
 const Seats = ({ seats, change, movie }) => {
     const [selected, setSelected] = useState([]); /* Array of seats ? or at least, array of states*/
-    const [creditCard, setCreditCard] = useState([]);
-    const [pin, setPin] = useState([]);
+    const [creditCard, setCreditCard] = useState(null);
+    const [pin, setPin] = useState(null);
 
     const handleSelected = (seat) => {
         if (!change) return;
@@ -21,6 +21,8 @@ const Seats = ({ seats, change, movie }) => {
     };
 
     const handleSubmit = (event) => {
+        let token = JSON.parse(localStorage.getItem('currentUser')).token;
+
         event.preventDefault();
         // fetch("http://localhost:8000/api/movies/" + "title")
         console.log(movie.seats);
@@ -33,7 +35,9 @@ const Seats = ({ seats, change, movie }) => {
         
         fetch("http://localhost:8000/api/reserve/" + movie.id, { 
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': token },
             body: JSON.stringify({selected, pin, creditCard}) // was previously JSON.stringify({movie})
             // NOTE: needs token
         })
