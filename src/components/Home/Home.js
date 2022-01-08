@@ -1,43 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
-import MovieList from './MovieList';
-import MovieListHeading from './MovieListHeading';
-import SearchBox from './SearchBox';
+
+import { useHistory } from "react-router-dom"; 
 
 const Home = () => {
-	const [movies, setMovies] = useState([]);
-	const [searchValue, setSearchValue] = useState('');
+    const [movies, setMovies] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [title, setTitle] = useState('');
+    const [date, setDate] = useState('');
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const [posterImage, setPosterImage] = useState('');
+    const [screenRoom, setScreenRoom] = useState('');
 
-	const getMovieRequest = async (searchValue) => {
-		const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=263d22d8`;
-        //  const url = 'http://localhost:3000/api/movies';
-		const response = await fetch(url);
-		const responseJson = await response.json();
-
-		if (responseJson.Search) {
-			setMovies(responseJson.Search);
-		}
-	};
-
-	useEffect(() => {
-		getMovieRequest(searchValue);
-	}, [searchValue]);
-
+    const history = useHistory();
+    const movie2 = { title, date, startTime, endTime, posterImage, screenRoom };
+        
 	
-	return (
-		<div className='container-fluid movie-app'>
-		<div className='row d-flex align-items-center mt-4 mb-4'>
-			<MovieListHeading heading="MOVIES" />
-			<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-		</div>
-		<div className='row'>
-			<MovieList movies={movies} />
-		</div>
-	</div>
+	fetch('http://localhost:8000/api/movies/', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(movie2)
+        }).then(() => {
+            history.push("/movie/" + movie2.title);
+        })
+    
+        
+    
 
+    useEffect(() => {
+        fetch("http://localhost:8000/api/movies")
+            .then(res => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data);
+                setMovies(data);
+            })
+    }, []);
+    
 
-	);
-};
-
+    return (
+        <div>
+            <div id="add-movie-button-container">
+            </div>
+            <div className="movie-list">
+                {movies && movies.map((movie) => (
+                <span className="movie">
+                    <Link to={`/movie/${movie.title}`}>
+                    <img className="movie-image" src={movie.posterImage} alt={movie.title} key={movie.id}></img>
+                    </Link>
+                </span>
+                ))}
+            </div>
+         
+        </div>
+    );
+}
+ 
 export default Home;

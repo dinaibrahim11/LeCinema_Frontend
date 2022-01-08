@@ -13,7 +13,7 @@ const initialState = usersAdapter.getInitialState({
         token: null,
         firstName: null,
         lastName: null,
-        username: 'Abdelrahman',
+        username: 'Ahmed',
         isLoggedIn: false, // TODO: set to false before integration
         email: null,
         password: null //TODO: check if the actual password is stored or an encrypted form of it

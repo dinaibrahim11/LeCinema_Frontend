@@ -1,36 +1,21 @@
-body {
-	background: #ffffff;
+.movie-list {
+    padding-top: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    grid-gap: 5px;
+    align-items: center;
+    justify-content: center;
 }
 
-.movie-app > .row {
-	overflow-x: auto;
-	flex-wrap: wrap;
+.movie-image {
+    height:40vh;
+    flex-grow: 1;
 }
 
-.image-container {
-	position: relative;
-	transition: transform 0.2s;
-	height: fit-content;
-	width: fit-content;
-}
-
-.image-container:hover {
-	cursor: pointer;
-	
-}
-
-.image-container:hover .overlay {
-	opacity: 1;
-}
-
-.overlay {
-	position: absolute;
-	background: rgba(223, 217, 217, 0.8);
-	width: 100%;
-	height: min-content;
-	transition: 0.5s ease;
-	opacity: 0;
-	bottom: 0;
-	padding: 20px;
-	text-align: center;
+#add-movie-button-container {
+    text-align:center;
+    margin-top: 1%;
 }
