@@ -27,7 +27,7 @@ const MovieDetails = (props) => {
         const movie2 = { title, date, startTime, endTime, screenRoom, posterImage };
         console.log(movie._id);
         // fetch("http://localhost:8000/api/movies/" + "title")
-        fetch("http://localhost:8000/movies/" + movie.id, { // Edit movie (PUT)
+        fetch("http://localhost:8000/api/movies/" + movie.id, { // Edit movie (PUT)
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(movie2)
@@ -42,7 +42,7 @@ const MovieDetails = (props) => {
     }
 
     const deleteMovie = () => {
-        fetch('http://localhost:8000/movies/' + movie.id, {
+        fetch('http://localhost:8000/api/movies/' + movie.id, {
             method: 'DELETE'
             }).then(() => {
             history.push('/movielist');

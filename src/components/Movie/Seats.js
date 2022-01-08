@@ -31,7 +31,7 @@ const Seats = ({ seats, change, movie }) => {
             }
         } 
         
-        fetch("http://localhost:8000/movies/" + movie.id, { // Edit movie (PUT)
+        fetch("http://localhost:8000/api/reserve/" + movie.id, { 
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({selected, pin, creditCard}) // was previously JSON.stringify({movie})

@@ -23,7 +23,7 @@ const MovieList = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const movie2 = { title, date, startTime, posterImage, screenRoom };
-        fetch('http://localhost:8000/movies', {
+        fetch('http://localhost:8000/api/movie', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(movie2)
@@ -37,7 +37,7 @@ const MovieList = () => {
     }
 
     useEffect(() => {
-        fetch("http://localhost:8000/movies")
+        fetch("http://localhost:8000/api/movies")
             .then(res => {
                 return res.json();
             })

@@ -44,8 +44,8 @@ const Reservations = () => {
         */
        
        
-        fetch('http://localhost:8000/movies/' + movie.id, { // NOTE: needs token, currently just deletes movies entirely
-            method: 'DELETE',
+        fetch('http://localhost:8000/api/cancelReserve/' + movie.id, { // NOTE: needs token, currently just deletes movies entirely
+            method: 'DELETE', // also it should be reservation id not movie id?
             /*headers: {
                 Authentication: 'Bearer Token',
             }
