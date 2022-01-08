@@ -219,23 +219,25 @@ const options = ["Customer", "Manager"];
         "lastName": lastName,
         "userName": userName,
         "email": email,
-        "password": password 
+        "password": password,
+        "confirmPassword": confirmpassword,
+        "role": selectedOption  
        }
-        API.post('user/signup', userInfo , {
+        API.post('/signup', userInfo , {
           headers: {
             'content-type': 'application/json'
           }
         }) 
           .then(res => {
             console.log(res);
-            if (res.status === 200) {
+            if (res.status === 201) {
             setIsUser(true);
             setUserError('');
     
               dispatch(usersActions.login({
                 email: email, 
                 password: password, 
-                userId: res.data.data.user._id,
+                confirmpassword: confirmpassword,
                 token: res.data.token,
                 userName: userName,
                 firstName: firstName,
@@ -265,7 +267,6 @@ const options = ["Customer", "Manager"];
 
   }
     const checkPassword = (str) => {
-      let upperCase = false;
       let digit = false;
       let lowerCase = false;
       for (let i = 0; i < str.length; i++) {
@@ -273,15 +274,12 @@ const options = ["Customer", "Manager"];
         if (!isNaN(character * 1)){
           digit = true;
         }else{
-          if (character === character.toUpperCase()) {
-              upperCase = true;
-          }
           if (character === character.toLowerCase()){
               lowerCase = true;
           }
       }
       }
-      return (upperCase && lowerCase && digit );
+      return (lowerCase && digit );
     }
 
 if(redirect) {
@@ -331,7 +329,7 @@ return (
            
          <div className="div__input">
           <input type="password" placeholder="Confirm Password" className="div__inputfield" 
-                 onChange={handleconfirmPasswordInput} value={password} />
+                 onChange={handleconfirmPasswordInput} value={confirmpassword} />
                  <p className="p__error">{confirmpassError}</p>
            </div>
            

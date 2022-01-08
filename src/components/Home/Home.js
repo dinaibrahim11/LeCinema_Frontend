@@ -18,13 +18,11 @@ const Home = () => {
     const movie2 = { title, date, startTime, endTime, posterImage, screenRoom };
         
 	
-	fetch('http://localhost:8000/api/movies/', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(movie2)
-        }).then(() => {
-            history.push("/movie/" + movie2.title);
-        })
+	// fetch('http://localhost:8000/api/movies', {
+    //         method: 'GET'
+    //     }).then(() => {
+    //         //history.push("/movie/" + movie2.title);
+    //     })
     
         
     

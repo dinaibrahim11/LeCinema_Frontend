@@ -16,7 +16,8 @@ const initialState = usersAdapter.getInitialState({
         username: 'Ahmed',
         isLoggedIn: false, // TODO: set to false before integration
         email: null,
-        password: null //TODO: check if the actual password is stored or an encrypted form of it
+        password: null, //TODO: check if the actual password is stored or an encrypted form of it
+        confirmpassword: null
     },
     currentSearchQuery: '',
     status: 'idle', //whether loading or not 
@@ -77,7 +78,7 @@ const usersSlice = createSlice({
 
 
         signup(state, action) {
-            const { email, password, userId, token, firstName, lastName } = action.payload;
+            const { email, password, userId, token, firstName, lastName, confirmpassword } = action.payload;
             let user = {
                 email: email, 
                 password: password, 
@@ -86,7 +87,8 @@ const usersSlice = createSlice({
                 id: userId,
                 token: token,
                 firstName: firstName,
-                lastName: lastName
+                lastName: lastName,
+                confirmpassword: confirmpassword
             };
             localStorage.setItem('currentUser',JSON.stringify(user));
         },

@@ -1,5 +1,6 @@
 
-import { Button } from 'bootstrap';
+// import { Button } from 'bootstrap';
+import Button from 'react-bootstrap/Button';
 import React, { useEffect, useState } from 'react'
 import './UsersList.css';
 function UsersList() {
@@ -19,7 +20,7 @@ function getUsers(){
         result.json().then(resp => {
             setUsers(resp)
         })
-        })
+    })
 }
 console.warn(users)
 
@@ -27,7 +28,7 @@ function authorize(id)
 {
   let data={role}
 setRole("Manager")
-  fetch("http://localhost:8000/api/users/{id}", {
+  fetch("http://localhost:8000/api/users/"+id, {
     method: "POST",
     headers: {
       'Accept': 'application/json',
@@ -44,7 +45,7 @@ setRole("Manager")
 }
 function deleteuser(email)
 {
-  
+  // TODOO: by id
   fetch('http://localhost:8000/api/users/${email}', {
     method: "POST",
     headers: {
