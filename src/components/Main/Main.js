@@ -6,19 +6,12 @@ import Unauthorized from '../Unauthorized/Unauthorized';
 import { useSelector } from 'react-redux';
 import Login from '../../components/Login/Login';
 import Signup from '../../components/Signup/Signup';
-import FormSuccess from '../../components/FormSuccess/FormSuccess';
 import Home from '../../components/Home/Home';
 
 import Movie from '../../components/Movie/Movie';
 import MovieList from '../../components/MovieList/MovieList';
 import Reservations from '../../components/Reservations/Reservations';
 
-/**
- * Responsible for the routing of the whole website
- * @example <Main />
- * 
- *     
- */
 const Main = (props) => {
 
     const isLoggedIn = useSelector(state => state.users.currentUser.isLoggedIn);
@@ -31,7 +24,6 @@ const Main = (props) => {
             <Route exact path="/" component={Home}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/signup" component={Signup}/>
-                <Route exact path="/post-signup" component={FormSuccess} />
                 <Route exact path='/Unauthorized' component={Unauthorized} />
                 
                 <Route exact path="/movie/:movieTitle" component={Movie}/>
