@@ -23,7 +23,7 @@ function getUsers(){
 }
 console.warn(users)
 
-function authorize()
+function authorize(id)
 {
   let data={role}
 setRole("Manager")
