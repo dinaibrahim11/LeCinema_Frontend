@@ -6,14 +6,14 @@ const Reservations = () => {
     // const [movies, setMovies] = useState(null);
     const [reservationIDs, setReservationIDs] = useState(null);
     const [movieNames, setMovieNames] = useState(null);
-    const [movies, setMovies] = useState([]);
 
-    let token = JSON.parse(localStorage.getItem('currentUser')).token;
+    const [token, setTokens] = useState(localStorage.getItem('newToken'));
     useEffect(() => {
         fetch("http://localhost:8000/api/getReservationId", { // should get from the logged in user's reserved movies
         method: 'GET',
         headers: {
-            'Authentication': token
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
         }
     }).then(res => {
                 return res.json(); // note: needs token
@@ -30,7 +30,8 @@ const Reservations = () => {
         fetch("http://localhost:8000/api/getReservationMovie", { // should get from the logged in user's reserved movies
         method: 'GET',
         headers: {
-            'Authentication': token
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
         }
     }).then(res => {
                 return res.json(); // note: needs token
@@ -43,34 +44,36 @@ const Reservations = () => {
             })
     }, []);
 
-    // const getAllMovies = () => {
-    //     for (let i = 0; i < reservationIDs.length; i++) {
-    //         useEffect(() => {
-    //             // fetch("http://localhost:8000/api/movies/" + "title")
-    //             fetch("http://localhost:8000/api/movies/" + movieNames[i]) // get specific movie (GET)
-    //                 .then(res => {
-    //                     return res.json();
-    //                 })
-    //                 .then((data) => {
-    //                     console.log(data[0]);
-    //                     setMovies(movies => [...movies,data]);
-    //                 })
-    //         }, []);
-    //     }
-    // }
+    /*
+    const getAllMovies = () => {
+        for (let i = 0; i < reservationIDs.length; i++) {
+            useEffect(() => {
+                // fetch("http://localhost:8000/api/movies/" + "title")
+                fetch("http://localhost:8000/api/movies/" + movieNames[i]) // get specific movie (GET)
+                    .then(res => {
+                        return res.json();
+                    })
+                    .then((data) => {
+                        console.log(data[0]);
+                        setMovies(movies => [...movies,data]);
+                    })
+            }, []);
+        }
+    }
+    */
 
     const handleCancel = (movie) => {
         
-        fetch('http://localhost:8000/api/cancelReserve/' + movie.id, { // NOTE: needs token, currently just deletes movies entirely
+        fetch('http://localhost:8000/api/cancelReserve/' + movie, { // NOTE: needs token, currently just deletes movies entirely
             method: 'DELETE', // also it should be reservation id not movie id?
             headers: {
-                'Authentication': token
+                'Authorization': 'Bearer ' + token
             }
             
         }).then(() => {
             // history.push('/movielist');
             window.location.reload();
-            alert("Deleted " + movie.title + " reservation successfully!");
+            alert("Deleted reservation successfully!");
         }).catch(err => {
             alert("Error! " + err);
         })
@@ -107,39 +110,9 @@ const Reservations = () => {
     return (
 
         <div className="center-content">
-            <table className="movies-table">
-                <tr>
-                    <th>Poster</th>
-                    <th>Title</th>
-                    <th>Date</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>Seat Number</th>
-                    <th>Cancel Reservation</th>
-                </tr>
-                {/*reservationIDs && movieNames && getAllMovies() && movies && movies.map((movie) => (
-                    <tr className="movie" key={movie.id}>
-                        <td>
-                            <img src={movie.posterImage} className="movie-img" />
-                        </td>
-                        <td>
-                            {movie.title}
-                        </td>
-                        <td>
-                            {movie.date}
-                        </td>
-                        <td>
-                            {movie.startTime}
-                        </td>
-                        <td>
-                            {movie.endTime}
-                        </td>
-                        <td>
-                            <Button variant="primary" className="cancel-reservation-button" onClick={() => handleCancel(movie)}>Cancel</Button>
-                        </td>
-                    </tr>
-                ))*/}
-            </table>
+            {reservationIDs && movieNames && reservationIDs.map((reservationIDs, i) => (
+                <Button variant="primary" className="cancel-reservation-button" onClick={() => handleCancel(reservationIDs)}>Cancel {movieNames[i]}</Button>
+            ))}
         </div>
 
     );
