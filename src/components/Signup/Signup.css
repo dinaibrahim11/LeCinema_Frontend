@@ -64,21 +64,6 @@
     padding-bottom: 5%;
 }
 
-
-
-.p__error2{
-    color: red;
-    line-height: 190%;
-    font-size: 90%;
-    margin-top: -1%;
-}
-
-.div__recaptcha {
-   padding-left: 15%;
-   background-attachment:fixed;
-}
-
-
 .div_signupbutton {
     position: relative;
     cursor: pointer;
@@ -120,9 +105,6 @@
     margin-bottom: 2%;
 }
 
-.div_signupbutton:hover{
-    background-color: #2bbbad;
-}
 
 .div__inputfield {
     background-color: transparent;

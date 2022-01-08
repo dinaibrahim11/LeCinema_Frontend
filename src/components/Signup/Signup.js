@@ -1,17 +1,13 @@
 import React, { useState } from 'react'
-import classes from './Signup.module.css'
+import classes from './Signup.css'
 import {Link} from 'react-router-dom'
 import { Redirect } from "react-router-dom";
-import API from '../../fakeAPI';
+import API from '../../API';
 import { useDispatch } from 'react-redux';
 import { usersActions } from '../../storev2/users-slice';
 import styled from 'styled-components';
 
-
 const Signup = () => {
-
-  
-
 const DropDownContainer = styled("div")`
 width: 10.5em;
 margin: 0 auto;
@@ -48,23 +44,16 @@ const ListItem = styled("li")`
 list-style: none;
 margin-bottom: 0.8em;
 `;
-
 const options = ["Customer", "Manager"];
-
   const dispatch = useDispatch();
-
   const [isUser, setIsUser] = useState();
   const [redirect, setRedirect] = useState(null);
-
   const [firstName, setFirstname] = useState('');
   const [lastName, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [userName, setuserName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setconfirmPassword] = useState('');
-
-  const [isChecked, setIsChecked] = useState('false');
-
   const [fnError, setfnError] = useState();
   const [lnError, setlnError] = useState();
   const [usernameError, setusernameError] = useState('');
@@ -85,13 +74,11 @@ const options = ["Customer", "Manager"];
   };
 
   const [isSubmitting, setisSubmitting] = useState(false);
-
   const handleSubmit = (e) => {
       e.preventDefault();
       setisSubmitting(true);
       signup();
   }   
-
   const handleFirstNameInput = (e) => {
   setFirstname(e.target.value);
 
@@ -210,7 +197,7 @@ const options = ["Customer", "Manager"];
         setErrorCount(1);
         totalErrorCount++;
     } else {
-      if (checkGoodPassword(password)){
+      if (checkPassword(password)){
         setpassError(''); 
         setErrorCount(0);
       } else {
@@ -277,36 +264,25 @@ const options = ["Customer", "Manager"];
     }
 
   }
-
-
-    const checkGoodPassword = (str) => {
-      let upperCaseGood = false;
-      let digitGood = false;
-      let lowerCaseGood = false;
-      let specialGood = false;
+    const checkPassword = (str) => {
+      let upperCase = false;
+      let digit = false;
+      let lowerCase = false;
       for (let i = 0; i < str.length; i++) {
         let character = str.charAt(i);
         if (!isNaN(character * 1)){
-          digitGood = true;
+          digit = true;
         }else{
-          if (character == character.toUpperCase()) {
-              upperCaseGood = true;
+          if (character === character.toUpperCase()) {
+              upperCase = true;
           }
-          if (character == character.toLowerCase()){
-              lowerCaseGood = true;
+          if (character === character.toLowerCase()){
+              lowerCase = true;
           }
       }
       }
-      
-      var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-      if (format.test(str)) {
-        specialGood = true;
-      }
-
-      return (upperCaseGood && lowerCaseGood && digitGood && specialGood);
+      return (upperCase && lowerCase && digit );
     }
-
-// ------------------------------------------ RETURN -------------------------------------------------- //
 
 if(redirect) {
   return (
@@ -316,47 +292,47 @@ if(redirect) {
 
 return (
 
-  <div className="page"  data-testid="signup">
- <div  className={classes.div__signup_page}>
+  <div className="page"  >
+ <div  className="div__signup_page">
 
-    <form className={classes.form__signup_page} onSubmit={handleSubmit} data-testid="form">
-         <h5 className={classes.center}> Signup to leCinema</h5>
+    <form className="form__signup_page" onSubmit={handleSubmit}>
+         <h5 className="classes.center"> Signup to leCinema</h5>
 
-         <div className={classes.div__input}>
-         <input type="text" placeholder="First name" className={classes.div__inputfield} id="signup-first-name-field" data-testid="fname"
+         <div className="classes.div__input">
+         <input type="text" placeholder="First name" className="div__inputfield" 
                 onChange={handleFirstNameInput} value={firstName} />
-               <p className={classes.p__error}>{fnError}</p>
+               <p className="p__error">{fnError}</p>
          </div>
 
-         <div className={classes.div__input}>
-         <input type="text" placeholder="Last name" className={classes.div__inputfield} id="signup-last-name-field" data-testid="lname"
+         <div className="div__input">
+         <input type="text" placeholder="Last name" className="div__inputfield"  
                 onChange={handleLastNameInput} value={lastName} />
-                <p className={classes.p__error}>{lnError}</p>
+                <p className="p__error">{lnError}</p>
          </div>
 
-         <div className={classes.div__input}>
-         <input type="text" placeholder="Username" className={classes.div__inputfield} id="signup-user-name-field" 
+         <div className="div__input">
+         <input type="text" placeholder="Username" className="div__inputfield"  
                 onChange={handleUserNameInput} value={userName} />
-                <p className={classes.p__error}>{usernameError}</p>
+                <p className="p__error">{usernameError}</p>
          </div>
 
 
-         <div className={classes.div__input}>
-          <input type="email" placeholder="Email address" className={classes.div__inputfield} id="signup-email-field" data-testid="email"
+         <div className="div__input">
+          <input type="email" placeholder="Email address" className="div__inputfield"  
                  onChange={handleEmailInput} value={email} />
-                 <p className={classes.p__error}>{emailError}</p>
+                 <p className="p__error">{emailError}</p>
          </div>
 
          <div className={classes.div__input}>
-          <input type="password" placeholder="Password" className={classes.div__inputfield} id="signup-pssword-field" data-testid="password"
+          <input type="password" placeholder="Password" className="div__inputfield" 
                  onChange={handlePasswordInput} value={password} />
-                 <p className={classes.p__error}>{passError}</p>
+                 <p className="p__error">{passError}</p>
            </div>
            
-         <div className={classes.div__input}>
-          <input type="password" placeholder="Confirm Password" className={classes.div__inputfield} id="signup-confirmpssword-field" 
+         <div className="div__input">
+          <input type="password" placeholder="Confirm Password" className="div__inputfield" 
                  onChange={handleconfirmPasswordInput} value={password} />
-                 <p className={classes.p__error}>{confirmpassError}</p>
+                 <p className="p__error">{confirmpassError}</p>
            </div>
            
       
@@ -377,11 +353,11 @@ return (
           </DropDownListContainer>
         )}
       </DropDownContainer>
-         <div className={classes.div__input}>
-         <button className={classes.div_signupbutton} id="signup-btn" data-testid="button">Sign up</button>
+         <div className="div__input">
+         <button className="div_signupbutton" >Sign up</button>
          </div>
           
-          <p> Log in <Link to ="/login" id="login-here-link">here </Link> </p>
+          <p> Log in <Link to ="/login" >here </Link> </p>
           <br />
           </form>
   </div>
