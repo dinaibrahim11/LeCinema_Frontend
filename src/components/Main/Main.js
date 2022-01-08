@@ -10,6 +10,7 @@ import Home from '../../components/Home/Home';
 
 import Movie from '../../components/Movie/Movie';
 import MovieList from '../../components/MovieList/MovieList';
+import UsersList from '../../components/UsersList/UsersList';
 import Reservations from '../../components/Reservations/Reservations';
 
 const Main = (props) => {
@@ -28,6 +29,7 @@ const Main = (props) => {
                 
                 <Route exact path="/movie/:movieTitle" component={Movie}/>
                 <Route exact path="/movielist" component={MovieList}/>
+                <Route exact path="/userslist" component={UsersList}/>
                 <Route exact path="/reservations" component={Reservations}/>
                 
             </Switch>
