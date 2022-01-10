@@ -26,5 +26,5 @@ $ npm start
 
 ## Team members
 
-- Dina Mohsen
+- Dina Ibrahim
 - Nour Zohry
